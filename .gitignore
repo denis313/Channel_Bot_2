@@ -1,0 +1,4 @@
+venv/
+.env
+.idea/
+py_log.log
