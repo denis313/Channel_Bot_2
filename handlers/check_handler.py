@@ -21,6 +21,8 @@ async def new_members(event: ChatMemberUpdated, bot: Bot):
         logging.debug(f'New user by id={user_id} in chat')
         member = await db_manager.get_user(user_id=user_id)
         if not member:
-            await bot.ban_chat_member(chat_id=-1002299872725, user_id=user_id)
-            await bot.unban_chat_member(chat_id=-1002299872725, user_id=user_id)
+            await bot.ban_chat_member(chat_id=-1002493871793, user_id=user_id)
+            await bot.unban_chat_member(chat_id=-1002493871793, user_id=user_id)
             logging.debug(f'Kick user by id={user_id}')
+    else:
+        print('!!!')

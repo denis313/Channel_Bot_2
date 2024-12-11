@@ -21,20 +21,22 @@ async def start_command(message: Message):
     user = await db_manager.get_user(user_id=message.from_user.id)
     show_keyboard = True
     if not user:
-        price = 40
+        price = 4000
         text = lexicon['start']
     elif user.subscription_status is False:
-        price = 20
+        price = 1900
         text = lexicon['every_buy']
     else:
-        price = 20
+        price = 1900
         text = lexicon['already_buy']
         show_keyboard = False  # Не показываем клавиатуру, если подписка уже оформлена
 
     url, id_payment = create_payment(
         amount=price,
         description="Оплата закрытого телеграм канала",
-        chat_id=message.from_user.id
+        chat_id=message.from_user.id,
+        name=message.from_user.first_name,
+        phone=79785878778
     )
 
     # Создаём клавиатуру только при необходимости

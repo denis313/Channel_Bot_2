@@ -20,7 +20,9 @@ async def check_status():
     for user in users:
         url, id_payment = create_payment(amount=2000,
                                          description="Оплата закрытого телеграм канала",
-                                         chat_id=user.user_id)
+                                         chat_id=user.user_id,
+                                         name=user.username,
+                                         phone=79785878778)
         kb = keyboard_prepayment(url=url, id_payment=id_payment)
         date_user = user.subscription_end_date
         days = date_user - now
@@ -31,7 +33,7 @@ async def check_status():
         elif abs(days.days) <= 0:
             await db_manager.delete_user(user_id=user.user_id)
             await bot.send_message(chat_id=user.user_id, text=lexicon['del_user'], reply_markup=kb)
-            await bot.ban_chat_member(chat_id=-1002299872725, user_id=user.user_id)
-            await bot.unban_chat_member(chat_id=-1002299872725, user_id=user.user_id)
+            await bot.ban_chat_member(chat_id=-1002493871793, user_id=user.user_id)
+            await bot.unban_chat_member(chat_id=-1002493871793, user_id=user.user_id)
             logging.debug(f'Kick user by id={user.user_id}')
 

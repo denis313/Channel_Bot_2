@@ -24,7 +24,7 @@ async def successful_payment_handler(callback: CallbackQuery, bot: Bot, callback
     end_date = start_date + timedelta(days=30)
     user = await db_manager.get_user(user_id=callback.from_user.id)
     payment = yookassa.Payment.find_one(callback_data.pay_id)
-    name = f'{callback.from_user.first_name} {callback.from_user.username if callback.from_user.username else None}'
+    name = f'{callback.from_user.first_name} @{callback.from_user.username if callback.from_user.username else None}'
     if payment.status == 'succeeded':
         if user:
             await db_manager.update_user(user_id=callback.from_user.id, user_data={'subscription_status': True,
